@@ -148,7 +148,7 @@ def main():
 			print(comment)
 			comment_string = re.split("(?:<!--)|(?:-->)", comment)[0]
 			comment_soup = BeautifulSoup(comment_string, "lxml")
-			team_stats = comment_soup.find("table", {"id": "team"})
+			team_stats = comment_soup.find("table", {"id": "Begin:Teams"})
 			if team_stats:
 				print("here")
 				team_names = team_stats.find("tbody").findAll("td", {"data-stat": "team_name"})
