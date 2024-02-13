@@ -180,11 +180,12 @@ def main():
 				gamesPlayed += 1.0
 
 		player_list = players.values()
+		print(player_list)
 		players_by_starts = sorted(player_list, key=lambda p: p.games_started, reverse=True)
 		starters = sorted(players_by_starts[0:5], key=lambda p: p.get_position_val())
 		bench = sorted(players_by_starts[5:], key=lambda p: p.minutes_played, reverse=True)
 
-		with open("data/" + year + "/" + team_abr + ".csv", "w") as f:
+		with open("data/" + year + "/" + team_abr + ".csv", "wb") as f:
 			writer = csv.writer(f)
 			writer.writerow(["Name", "GamesPlayed", "MinutesPlayed"] + [str(x) for x in range(1,49)])
 			for player in starters + bench:
