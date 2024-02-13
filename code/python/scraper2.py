@@ -180,7 +180,8 @@ def main():
 				gamesPlayed += 1.0
 
 		player_list = players.values()
-		print(player_list)
+		for val in player_list:
+			print(val.name, val.games_played, val.games_started, val.minutes_played, val.minutes_count)
 		players_by_starts = sorted(player_list, key=lambda p: p.games_started, reverse=True)
 		starters = sorted(players_by_starts[0:5], key=lambda p: p.get_position_val())
 		bench = sorted(players_by_starts[5:], key=lambda p: p.minutes_played, reverse=True)
