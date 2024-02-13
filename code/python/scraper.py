@@ -136,12 +136,12 @@ def process_plus_minus(plus_minus_link, isHomeGame, num_overtimes, players):
 def main():
 
 	today = datetime.now().date()
-	years = ["2020","2021", "2022"]
+	years = ["2023"]
 
 	for year in years:
 		print("DOING YEAR " + year)
 		link = "http://www.basketball-reference.com/leagues/NBA_" + year + ".html"
-		response = urllib2.urlopen(urllib2.Request(link, headers={'User-Agent': 'Mozilla'})).read()
+		response = urllib2.urlopen(urllib2.Request(link, headers={'User-Agent': 'Mozilla/5.0'})).read()
 		season_summary = BeautifulSoup(response, 'lxml')
 		comments = season_summary.findAll(text=lambda text:isinstance(text, Comment))
 		for comment in comments:
