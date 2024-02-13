@@ -148,7 +148,7 @@ def main():
 			print(comment)
 			comment_string = re.split("(?:<!--)|(?:-->)", comment)[0]
 			comment_soup = BeautifulSoup(comment_string, "lxml")
-			team_stats = comment_soup.find("table", {"id": "team-stats-per_game"})
+			team_stats = comment_soup.find("table", {"id": "team"})
 			if team_stats:
 				print("here")
 				team_names = team_stats.find("tbody").findAll("td", {"data-stat": "team_name"})
@@ -159,7 +159,7 @@ def main():
 
 					players = generate_player_dictionary(team_page_link)
 					schedule_link = "http://www.basketball-reference.com/teams/" + team_abr + "/" + year + "_games.html"
-					response = urllib2.urlopen(urllib2.Request(schedule_link, headers={'User-Agent': 'Mozilla'})).read()
+					response = urllib2.urlopen(urllib2.Request(schedule_link, headers={'User-Agent': 'Mozilla/5.0'})).read()
 					schedule_soup = BeautifulSoup(response, 'lxml')
 					game_rows = schedule_soup.find("table", {"id": "games"}).find("tbody").findAll("tr", {"class": None})
 					print("Working on " + team_abr)
