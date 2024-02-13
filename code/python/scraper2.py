@@ -184,7 +184,7 @@ def main():
 		starters = sorted(players_by_starts[0:5], key=lambda p: p.get_position_val())
 		bench = sorted(players_by_starts[5:], key=lambda p: p.minutes_played, reverse=True)
 
-		with open("data/" + year + "/" + team_abr + ".csv", "wb") as f:
+		with open("data/" + year + "/" + team_abr + ".csv", "w") as f:
 			writer = csv.writer(f)
 			writer.writerow(["Name", "GamesPlayed", "MinutesPlayed"] + [str(x) for x in range(1,49)])
 			for player in starters + bench:
