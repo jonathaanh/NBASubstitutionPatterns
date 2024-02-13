@@ -151,6 +151,7 @@ def main():
 			comment_soup = BeautifulSoup(comment_string, "lxml")
 			team_stats = comment_soup.find("table", {"id": "team-stats-per_game"})
 			if team_stats:
+				print("here")
 				team_names = team_stats.find("tbody").findAll("td", {"data-stat": "team_name"})
 				for team_name in team_names:
 					team_page_link = team_name.find("a")['href']
