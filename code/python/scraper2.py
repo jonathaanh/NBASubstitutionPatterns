@@ -113,7 +113,11 @@ def process_plus_minus(plus_minus_link, isHomeGame, num_overtimes, players):
 	minute_width = total_width / total_minutes
 	for player_row, minutes_row in zip(*[iter(rows)] * 2):
 		player_name = player_row.find('span').text
-		player_obj = players[player_name]
+		try:
+			player_obj = players[player_name]
+		except KeyError:
+			print("Player not found: " + player_name)
+			return
 		player_obj.games_count += 1
 		curr_minute = 0.0
 		for bar in minutes_row.findAll('div'):
