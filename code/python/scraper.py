@@ -1,6 +1,6 @@
 import sys
 import csv
-import urllib2
+import urllib.request as urllib2
 import requests
 import re
 from itertools import izip
@@ -142,7 +142,7 @@ def main():
 	for year in years:
 		print("DOING YEAR " + year)
 		link = "http://www.basketball-reference.com/leagues/NBA_" + year + ".html"
-		response = urllib2.urlopen(urllib2.Request(link, headers={'User-Agent': 'Mozilla'})).read();
+		response = urllib2.urlopen(urllib2.Request(link, headers={'User-Agent': 'Mozilla'})).read()
 		season_summary = BeautifulSoup(response, 'lxml')
 		comments = season_summary.findAll(text=lambda text:isinstance(text, Comment))
 		for comment in comments:
