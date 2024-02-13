@@ -98,7 +98,7 @@ width_regex = re.compile("width:([0-9]+)px;")
 def process_plus_minus(plus_minus_link, isHomeGame, num_overtimes, players):
 	print(plus_minus_link)
 	try:
-		response = urllib2.urlopen(urllib2.Request(plus_minus_link, headers={'User-Agent': 'Mozilla'})).read()
+		response = urllib2.urlopen(urllib2.Request(plus_minus_link, headers={'User-Agent': 'Mozilla/5.0'})).read()
 	except urllib2.HTTPError:
 		return False
 	pm_soup = BeautifulSoup(response, 'lxml')
@@ -148,7 +148,7 @@ def main():
 			print(comment)
 			comment_string = re.split("(?:<!--)|(?:-->)", comment)[0]
 			comment_soup = BeautifulSoup(comment_string, "lxml")
-			team_stats = comment_soup.find("table", {"id": "Begin:Teams"})
+			team_stats = comment_soup.find("table", {"id": "team-stats-per_game"})
 			if team_stats:
 				print("here")
 				team_names = team_stats.find("tbody").findAll("td", {"data-stat": "team_name"})
