@@ -144,9 +144,8 @@ def main():
 		response = urllib2.urlopen(urllib2.Request(link, headers={'User-Agent': 'Mozilla/5.0'})).read()
 		season_summary = BeautifulSoup(response, 'lxml')
 		comments = season_summary.findAll(text=lambda text:isinstance(text, Comment))
-		print("find comments")
 		for comment in comments:
-			print("found comments")
+			print(comment)
 			comment_string = re.split("(?:<!--)|(?:-->)", comment)[0]
 			comment_soup = BeautifulSoup(comment_string, "lxml")
 			team_stats = comment_soup.find("table", {"id": "team-stats-per_game"})
