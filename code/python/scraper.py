@@ -3,7 +3,6 @@ import csv
 import urllib.request as urllib2
 import requests
 import re
-from itertools import izip
 from lxml import html, etree
 from bs4 import BeautifulSoup
 from bs4.element import Comment
@@ -112,7 +111,7 @@ def process_plus_minus(plus_minus_link, isHomeGame, num_overtimes, players):
 
 	total_minutes = 48.0 + (5.0 * num_overtimes)
 	minute_width = total_width / total_minutes
-	for player_row, minutes_row in izip(*[iter(rows)] * 2):
+	for player_row, minutes_row in zip(*[iter(rows)] * 2):
 		player_name = player_row.find('span').text
 		player_obj = players[player_name]
 		player_obj.games_count += 1
